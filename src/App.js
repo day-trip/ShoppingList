@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import './bootstrap.css';
 import './App.css';
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import Footer from "./Footer";
+import ShopsList from "./ShopsList";
+import ItemsList from "./ItemsList";
+import LoginCallback from "./LoginCallback";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <Switch>
+                    <Route exact path="/">
+                        <h1>The home page is not done yet, just click <a href="/lists">this link</a></h1>
+                    </Route>
+                    <Route path="/lists">
+                        <ShopsList/>
+                    </Route>
+                    <Route path="/items/:name">
+                        <ItemsList/>
+                    </Route>
+                    <Route path="/callback">
+                        <LoginCallback/>
+                    </Route>
+                </Switch>
+                <Footer/>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
