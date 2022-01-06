@@ -102,6 +102,7 @@ class ShopsList extends Component {
             this.setState({
                 shopNames: [...this.state.shopNames, val]
             })
+            this.addRef.current.value = "";
         }, window.location.href);
     }
 

@@ -108,7 +108,8 @@ class ItemsList extends Component {
         }, (res) => {
             this.setState({
                 itemNames: [...this.state.itemNames, val]
-            })
+            });
+            this.addRef.current.value = "";
         }, window.location.href);
     }
 
