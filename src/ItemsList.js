@@ -123,7 +123,7 @@ class ItemsList extends Component {
 
         return (
             <div className="w-100">
-                <div className="navbar navbar-expand-lg fixed-top navbar-light bg-light mb-lg-5">
+                <div className="navbar navbar-expand-lg navbar-light bg-light mb-lg-5">
                     <div className="container">
                         <a className="navbar-brand">My {this.state.shop} shopping list</a>
                         <ul className="navbar-nav ms-md-auto">
