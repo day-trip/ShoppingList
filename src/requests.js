@@ -19,7 +19,6 @@ const sendRequest = (url, data, callback, next) => {
                 sendToLogin(next);
             }
             if (callback !== null && callback !== undefined) {
-                console.log(xhr.responseText)
                 callback(xhr.responseText);
             }
         }

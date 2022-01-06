@@ -34,9 +34,6 @@ class ItemsList extends Component {
     }
 
     deleteList(listName) {
-        console.log("DELETED LIST: " + listName);
-        console.log(this.state.shop);
-        console.log(listName);
         sendRequest("https://o0rqxrd4al.execute-api.us-east-1.amazonaws.com/Prod/item/delete", {
             shop: this.state.shop,
             item: listName
@@ -53,7 +50,6 @@ class ItemsList extends Component {
     }
 
     saveList(input) {
-        console.log("SAVED LIST: " + input.value);
         const new_val = input.value;
         const old_val = this.state.itemNames[input.id];
         if (new_val !== old_val) {
@@ -75,7 +71,6 @@ class ItemsList extends Component {
     }
 
     processInput(inputElem) {
-        console.log("Processed input: " + inputElem.toString());
         this.state.inputInsideState = {
             ...this.state.inputInsideState,
             [inputElem]: false
@@ -83,7 +78,6 @@ class ItemsList extends Component {
     }
 
     onClick(event) {
-        console.log("Clicked me: " + event.toString());
         if (event.type === 'click') {
             for (const [key, value] of Object.entries(this.state.inputInsideState)) {
                 const realKey = document.getElementById(key);
@@ -145,7 +139,6 @@ class ItemsList extends Component {
                     </div>
 
                     {this.state.itemNames.map(((value, index) => {
-                        console.log(value)
                         return (
                             <div className="input-group mb-2" key={value}>
                                 <input type="text" className="form-control" defaultValue={value} id={index}/>

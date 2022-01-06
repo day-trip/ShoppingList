@@ -32,15 +32,12 @@ class ShopsList extends Component {
     }
 
     deleteList(listName) {
-        console.log("DELETED LIST: " + listName);
         sendRequest("https://o0rqxrd4al.execute-api.us-east-1.amazonaws.com/Prod/shop/delete", {shop: listName}, (res) => {
             const copy = [...this.state.shopNames];
             const index = copy.indexOf(listName);
             if (index > -1) {
                 copy.splice(index, 1);
             }
-            console.log(copy)
-            console.log(this.state.shopNames);
             this.setState({
                 shopNames: copy
             })
@@ -48,12 +45,10 @@ class ShopsList extends Component {
     }
 
     openList(listName) {
-        console.log("OPENED LIST: " + listName);
         window.location.href = "items/" + listName;
     }
 
     saveList(input) {
-        console.log("SAVED LIST: " + input.value);
         const new_val = input.value;
         const old_val = this.state.shopNames[input.id];
         if (new_val !== old_val) {
@@ -71,7 +66,6 @@ class ShopsList extends Component {
     }
 
     processInput(inputElem) {
-        console.log("Processed input: " + inputElem.toString());
         this.state.inputInsideState = {
             ...this.state.inputInsideState,
             [inputElem]: false
@@ -79,7 +73,6 @@ class ShopsList extends Component {
     }
 
     onClick(event) {
-        console.log("Clicked me: " + event.toString());
         if (event.type === 'click') {
             for (const [key, value] of Object.entries(this.state.inputInsideState)) {
                 const realKey = document.getElementById(key);
@@ -130,7 +123,6 @@ class ShopsList extends Component {
                     </div>
 
                     {this.state.shopNames.map(((value, index) => {
-                        console.log(value)
                         return (
                             <div className="input-group mb-2" key={value}>
                                 <button className="btn btn-primary" type="button" onClick={() => {
