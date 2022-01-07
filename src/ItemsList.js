@@ -125,6 +125,9 @@ class ItemsList extends Component {
                             <li className="nav-item">
                                 <a className="nav-link" href="/lists">Back to my lists</a>
                             </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/signout">Sign Out</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

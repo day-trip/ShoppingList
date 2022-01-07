@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import ShopsList from "./ShopsList";
 import ItemsList from "./ItemsList";
 import LoginCallback from "./LoginCallback";
+import Signout from "./Signout";
 
 function App() {
     return (
@@ -22,6 +23,9 @@ function App() {
                     </Route>
                     <Route path="/callback">
                         <LoginCallback/>
+                    </Route>
+                    <Route path="/signout">
+                        <Signout/>
                     </Route>
                 </Switch>
                 <Footer/>

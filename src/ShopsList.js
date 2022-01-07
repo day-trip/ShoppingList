@@ -113,6 +113,11 @@ class ShopsList extends Component {
                 <div className="navbar navbar-expand-lg navbar-light bg-light mb-lg-5">
                     <div className="container">
                         <a className="navbar-brand">My shopping lists</a>
+                        <ul className="navbar-nav ms-md-auto">
+                            <li className="nav-item">
+                                <a className="nav-link" href="/signout">Sign Out</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
