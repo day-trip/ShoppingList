@@ -16,6 +16,7 @@ const sendRequest = (url, data, callback, next) => {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 403 || xhr.status === 401) {
+                localStorage.removeItem("token");
                 sendToLogin(next);
             }
             if (callback !== null && callback !== undefined) {
