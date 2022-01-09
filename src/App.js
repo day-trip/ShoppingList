@@ -6,6 +6,7 @@ import ShopsList from "./ShopsList";
 import ItemsList from "./ItemsList";
 import LoginCallback from "./LoginCallback";
 import Signout from "./Signout";
+import Home from "./Home";
 
 function App() {
     return (
@@ -13,7 +14,7 @@ function App() {
             <div className="App">
                 <Switch>
                     <Route exact path="/">
-                        <h1>The home page is not done yet, just click <a href="/lists">this link</a></h1>
+                        <Home/>
                     </Route>
                     <Route path="/lists">
                         <ShopsList/>

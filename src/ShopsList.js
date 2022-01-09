@@ -141,6 +141,9 @@ class ShopsList extends Component {
                             </div>
                         )
                     }))}
+
+                    <h1 className="border-bottom">Shared lists</h1>
+                    <p>Nobody has shared any lists with you.</p>
                 </div>
             </div>
         )
