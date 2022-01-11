@@ -45,7 +45,7 @@ class ShopsList extends Component {
     }
 
     openList(listName) {
-        window.location.href = "items/" + listName;
+        window.location.href = "/shop/" + listName;
     }
 
     saveList(input) {

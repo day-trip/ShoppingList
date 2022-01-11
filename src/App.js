@@ -2,11 +2,11 @@ import './bootstrap.css';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Footer from "./Footer";
-import ShopsList from "./ShopsList";
-import ItemsList from "./ItemsList";
 import LoginCallback from "./LoginCallback";
 import Signout from "./Signout";
 import Home from "./Home";
+import Shops from "./Shops";
+import Items from "./Items";
 
 function App() {
     return (
@@ -16,11 +16,11 @@ function App() {
                     <Route exact path="/">
                         <Home/>
                     </Route>
-                    <Route path="/lists">
-                        <ShopsList/>
+                    <Route path="/shops">
+                        <Shops/>
                     </Route>
-                    <Route path="/items/:name">
-                        <ItemsList/>
+                    <Route path="/shop/:shopID">
+                        <Items/>
                     </Route>
                     <Route path="/callback">
                         <LoginCallback/>

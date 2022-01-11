@@ -19,6 +19,7 @@ const sendRequest = (url, data, callback, next) => {
                 localStorage.removeItem("token");
                 sendToLogin(next);
             }
+            console.log(xhr.responseText)
             if (callback !== null && callback !== undefined) {
                 callback(xhr.responseText);
             }
