@@ -44,7 +44,7 @@ const Items = () => {
         <div className="w-100">
             <div className="navbar navbar-expand-lg navbar-light bg-light mb-lg-5">
                 <div className="container">
-                    <a className="navbar-brand">My NOT_IMPLEMENTED_YET shopping list</a>
+                    <a className="navbar-brand">My {sessionStorage.getItem("shopName") || "error"} shopping list</a>
                     <ul className="navbar-nav ms-md-auto">
                         <li className="nav-item">
                             <a className="nav-link" href="/shops">Back to my lists</a>

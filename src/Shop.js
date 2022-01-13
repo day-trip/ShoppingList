@@ -5,6 +5,7 @@ const Shop = ({shopID, shopName, onDelete, onEdit}) => {
     const inputReference = createRef();
 
     const openList = () => {
+        sessionStorage.setItem("shopName", shopName);
         window.location.href = "/shop/" + shopID;
     }
 
