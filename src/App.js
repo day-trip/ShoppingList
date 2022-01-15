@@ -7,11 +7,13 @@ import Signout from "./Signout";
 import Home from "./Home";
 import Shops from "./Shops";
 import Items from "./Items";
+import Join from "./Join";
+import Login from "./Login";
 
 function App() {
     return (
         <Router>
-            <div className="App">
+            <div>
                 <Switch>
                     <Route exact path="/">
                         <Home/>
@@ -21,6 +23,12 @@ function App() {
                     </Route>
                     <Route path="/shop/:shopID">
                         <Items/>
+                    </Route>
+                    <Route path="/join/:shopID">
+                        <Join/>
+                    </Route>
+                    <Route path="/login">
+                        <Login/>
                     </Route>
                     <Route path="/callback">
                         <LoginCallback/>

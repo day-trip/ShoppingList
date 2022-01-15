@@ -1,4 +1,4 @@
-import sendToLogin from "./sendToLogin";
+import Navbar from "./Navbar";
 
 const Home = () => {
     const token = localStorage.getItem("token");
@@ -6,12 +6,22 @@ const Home = () => {
         window.location.href = "/shops";
     }
     return (
-        <div>
-            <h1 className="mb-2">Welcome to Shopping Lists!</h1>
-            <h2 className="mb-4">You can easily maintain all the things you need to buy in a simple way.</h2>
-            <h3 className="mb-3">All you have to do to get started is sign in with Google!</h3>
-            <button className="btn btn-primary" onClick={() => {sendToLogin("/shops")}}>Login</button>
-        </div>
+        <>
+            <Navbar>
+                <a className="navbar-brand">Shopping Lists</a>
+                <ul className="navbar-nav ms-md-auto">
+                    <li className="nav-item">
+                        <a className="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </Navbar>
+            <div className="container text-center">
+                <h1 className="display-3 mb-lg-4">Welcome to Shopping Lists!</h1>
+                <h2 className="mb-lg-5">You can keep track of everything you need to buy with no problem!</h2>
+
+                <a className="btn btn-primary btn-lg" href="/login">Get started now</a>
+            </div>
+        </>
     )
 }
 

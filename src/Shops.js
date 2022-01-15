@@ -1,6 +1,7 @@
 import {createRef, useState} from "react";
 import Shop from "./Shop";
 import Backend from "./Backend";
+import Navbar from "./Navbar";
 
 const Shops = () => {
     const [shops, setShops] = useState(null);
@@ -39,42 +40,42 @@ const Shops = () => {
     }
 
     return (
-        <div className="w-100">
-            <div className="navbar navbar-expand-lg navbar-light bg-light mb-lg-5">
-                <div className="container">
-                    <a className="navbar-brand">My shopping lists</a>
-                    <ul className="navbar-nav ms-md-auto">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/signout">Sign Out</a>
-                        </li>
-                    </ul>
+        <>
+            <Navbar>
+                <a className="navbar-brand">My shopping lists</a>
+                <ul className="navbar-nav ms-md-auto">
+                    <li className="nav-item">
+                        <a className="nav-link" href="/signout">Sign Out</a>
+                    </li>
+                </ul>
+            </Navbar>
+
+            <div className="container">
+                <div className="form-group">
+                    <div className="input-group mb-2">
+                        <input ref={addInputReference} onChange={onAddChange} type="text" className="form-control add_new" placeholder="Add new store"/>
+                        <button ref={addButtonReference} className="btn btn-primary button_big_font disabled" type="button" onClick={add}>+</button>
+                    </div>
+
+                    {shops === null ? (
+                        <p>Loading lists...</p>
+                    ) : shops.length === 0 ? (
+                        <p>You do not have any lists.</p>
+                    ) : ((shops.map(((value, index) => {
+                        return <Shop key={value[0]} shopID={value[0]} shopName={value[1]} onDelete={() => {
+                            const copy = [...shops];
+                            copy.splice(index, 1)
+                            setShops(copy);
+                        }
+                        } onEdit={(newValue) => {
+                            const copy = [...shops];
+                            copy[index][1] = newValue;
+                            setShops(copy);
+                        }} />
+                    }))))}
                 </div>
             </div>
-
-            <div className="form-group m-auto w-50">
-                <div className="input-group mb-2">
-                    <input ref={addInputReference} onChange={onAddChange} type="text" className="form-control add_new" placeholder="Add new store"/>
-                    <button ref={addButtonReference} className="btn btn-primary button_big_font disabled" type="button" onClick={add}>+</button>
-                </div>
-
-                {shops === null ? (
-                    <p>Loading lists...</p>
-                ) : shops.length === 0 ? (
-                    <p>You do not have any lists.</p>
-                ) : ((shops.map(((value, index) => {
-                    return <Shop key={value[0]} shopID={value[0]} shopName={value[1]} onDelete={() => {
-                        const copy = [...shops];
-                        copy.splice(index, 1)
-                        setShops(copy);
-                    }
-                    } onEdit={(newValue) => {
-                        const copy = [...shops];
-                        copy[index][1] = newValue;
-                        setShops(copy);
-                    }} />
-                }))))}
-            </div>
-        </div>
+        </>
     )
 }
 
