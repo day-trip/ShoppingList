@@ -1,5 +1,5 @@
 function sendToLogin(next) {
-    if (next !== null && next !== undefined) {
+    if (next === null || next === undefined) {
         next = window.location.href;
     }
     window.localStorage.setItem("next", next);
