@@ -1,5 +1,6 @@
 import {createRef} from "react";
 import Backend from "./Backend";
+import {Link} from "react-router-dom";
 
 const Shop = ({shopID, shopName, onDelete, onEdit}) => {
     const inputReference = createRef();
@@ -7,6 +8,7 @@ const Shop = ({shopID, shopName, onDelete, onEdit}) => {
     const openList = () => {
         localStorage.setItem("shopName", shopName);
         window.location.href = "/shop/" + shopID;
+        <Link ></Link>
     }
 
     const saveList = (target) => {

@@ -9,7 +9,7 @@ const Items = () => {
     const [gotItems, setGotItems] = useState(false);
     const addInputReference = createRef();
     const addButtonReference = createRef();
-    const copyButtonReference = createRef();
+    /*const copyButtonReference = createRef();*/
     let {shopID} = useParams()
     const shopName = localStorage.getItem("shopName") || "error";
 
@@ -43,7 +43,7 @@ const Items = () => {
         }
     }
 
-    const copyInviteLink = () => {
+    /*const copyInviteLink = () => {
         navigator.clipboard.writeText("jcc.lol/join/" + shopID + "?name=" + shopName).then((() => {
             if (copyButtonReference.current) {
                 copyButtonReference.current.innerText = "Copied!";
@@ -52,15 +52,20 @@ const Items = () => {
                 }, 5000);
             }
         }));
-    }
+    }*/
 
     return (
         <>
             <Navbar>
-                <a className="navbar-brand">My {shopName} shopping list</a>
+                <a className="navbar-brand">My <span className="text-danger">{shopName}</span> shopping list</a>
+                <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <a className="nav-link" href="/share">Share</a>
+                    </li>
+                </ul>
                 <ul className="navbar-nav ms-md-auto">
                     <li className="nav-item">
-                        <a className="nav-link" href="/shops">Back to my lists</a>
+                        <a className="nav-link" href="/shops">My Lists</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="/signout">Sign Out</a>
@@ -69,14 +74,14 @@ const Items = () => {
             </Navbar>
 
             <div className="container">
-                <div className="d-flex justify-content-between mb-4">
+                {/*<div className="d-flex justify-content-between mb-4">
                     <div>
                         <p>You can send others an invite link so you can collaborate on a shopping list</p>
                     </div>
                     <div>
                         <button className="btn btn-primary" onClick={copyInviteLink} ref={copyButtonReference} >Copy Invite Link</button>
                     </div>
-                </div>
+                </div>*/}
 
                 <div className="form-group">
                     <div className="input-group mb-2">

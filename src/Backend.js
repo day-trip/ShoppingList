@@ -2,9 +2,9 @@ import sendRequest from "./requests";
 
 class Backend {
     static createList(listName, callback) {
-        sendRequest("https://o0rqxrd4al.execute-api.us-east-1.amazonaws.com/Prod/shop/add", {shop: listName}, (res) => {
-            callback(JSON.parse(JSON.parse(res).body))
-        }, window.location.href);
+        const shopID = ((new Date(2020, 4, 29, 22, 0, 0, 0) * 3) / 50).toFixed(); // Has to be in "jiffies", not ms
+        callback(shopID);
+        sendRequest("https://o0rqxrd4al.execute-api.us-east-1.amazonaws.com/Prod/shop/add", {shopName: listName, shopId: shopID}, null, window.location.href);
     }
 
     static updateList(listID, newListName) {

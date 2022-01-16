@@ -3,7 +3,7 @@ import sendToLogin from "./sendToLogin";
 
 const sendRequest = (url, data, callback, next) => {
     const token = window.localStorage.getItem("token");
-    if (token === null || token === undefined) {
+    if (!token) {
         sendToLogin(next);
     }
 
@@ -19,7 +19,8 @@ const sendRequest = (url, data, callback, next) => {
                 localStorage.removeItem("token");
                 sendToLogin(next);
             }
-            if (callback !== null && callback !== undefined) {
+            console.log(xhr.responseText);
+            if (callback) {
                 callback(xhr.responseText);
             }
         }

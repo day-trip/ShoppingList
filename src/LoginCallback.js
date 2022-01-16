@@ -1,7 +1,9 @@
 import getURLParameter from "./Urls";
+import {Redirect} from "react-router-dom";
 
 
 const LoginCallback = () => {
+    localStorage.setItem("beenHere", "1");
     const token = getURLParameter("access_token")
     if (token === null) {
         return (
@@ -12,17 +14,16 @@ const LoginCallback = () => {
     }
     window.localStorage.setItem("token", token);
     const next = window.localStorage.getItem("next");
+
     if (next !== null && next !== undefined) {
         window.localStorage.removeItem("next");
-        window.location.href = next;
-    } else {
-        window.location.href = "/";
+        return (
+            <Redirect to={next}/>
+        )
     }
+
     return (
-        <div>
-            <h1>Authorized!</h1>
-            <p>You should be automatically redirected to the home page, if not, click <a href="/">this</a></p>
-        </div>
+        <Redirect to="/"/>
     )
 }
 

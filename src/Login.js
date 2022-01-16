@@ -1,12 +1,7 @@
 import sendToLogin from "./sendToLogin";
 
 const Login = () => {
-    sendToLogin("/shops");
-    return (
-        <>
-            <p>login</p>
-        </>
-    )
+    return sendToLogin("/shops");
 }
 
 export default Login;

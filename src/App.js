@@ -9,6 +9,7 @@ import Shops from "./Shops";
 import Items from "./Items";
 import Join from "./Join";
 import Login from "./Login";
+import Share from "./Share";
 
 function App() {
     return (
@@ -29,6 +30,9 @@ function App() {
                     </Route>
                     <Route path="/login">
                         <Login/>
+                    </Route>
+                    <Route path="/share">
+                        <Share/>
                     </Route>
                     <Route path="/callback">
                         <LoginCallback/>
