@@ -1,5 +1,6 @@
 import './bootstrap.css';
 import './App.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Footer from "./Footer";
 import LoginCallback from "./LoginCallback";
@@ -7,7 +8,6 @@ import Signout from "./Signout";
 import Home from "./Home";
 import Shops from "./Shops";
 import Items from "./Items";
-import Join from "./Join";
 import Login from "./Login";
 import Share from "./Share";
 
@@ -24,9 +24,6 @@ function App() {
                     </Route>
                     <Route path="/shop/:shopID">
                         <Items/>
-                    </Route>
-                    <Route path="/join/:shopID">
-                        <Join/>
                     </Route>
                     <Route path="/login">
                         <Login/>

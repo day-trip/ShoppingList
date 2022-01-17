@@ -18,6 +18,8 @@
     margin-bottom: 1.25% !important;
 }
 
-.nav-link a {
-    font-size: ;
+.scroll-top {
+    position: fixed !important;
+    right: 3% !important;
+    bottom: 3% !important;
 }

@@ -1,18 +1,20 @@
-import Navbar from "./Navbar";
+import {Navbar, ToggledContent} from "./Navbar";
 
 const Share = () => {
     return (
         <>
             <Navbar>
                 <a className="navbar-brand">My PLACEHOLDER shopping list</a>
-                <ul className="navbar-nav ms-md-auto">
-                    <li className="nav-item">
-                        <a className="nav-link" href="/shops">My lists</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/signout">Sign Out</a>
-                    </li>
-                </ul>
+                <ToggledContent>
+                    <ul className="navbar-nav ms-md-auto">
+                        <li className="nav-item">
+                            <a className="nav-link" href="/shops">My lists</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/signout">Sign Out</a>
+                        </li>
+                    </ul>
+                </ToggledContent>
             </Navbar>
 
             <div className="container">

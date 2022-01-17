@@ -40,12 +40,6 @@ class Backend {
     static updateItem(listID, itemName, newItemName) {
         sendRequest("https://o0rqxrd4al.execute-api.us-east-1.amazonaws.com/Prod/item/edit", {shop: listID, item: itemName, newItem: newItemName}, null, window.location.href);
     }
-
-
-
-    static joinList(listID, callback) {
-        setTimeout(callback, 3000);
-    }
 }
 
 export default Backend;

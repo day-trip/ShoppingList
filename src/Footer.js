@@ -1,23 +1,21 @@
-import {useEffect, createRef} from "react";
+import {useEffect, useState} from "react";
 
 const Footer = () => {
-    const topReference = createRef();
+    const [visible, setVisible] = useState(false);
     let lastScrollTop = 0;
 
     const onScroll = () => {
-        console.log("here1")
-        if (topReference.current) {
-            console.log("here2")
-            const st = window.pageYOffset || document.documentElement.scrollTop;
-            if (st > lastScrollTop){
-                console.log("down")
-                topReference.current.classList.remove("invisible");
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop){
+            setVisible(false);
+        } else {
+            if (window.scrollY === 0) {
+                setVisible(false);
             } else {
-                console.log("up")
-                topReference.current.classList.add("invisible");
+                setVisible(true);
             }
-            lastScrollTop = st <= 0 ? 0 : st;
         }
+        lastScrollTop = st <= 0 ? 0 : st;
     }
 
     useEffect(() => {
@@ -34,7 +32,7 @@ const Footer = () => {
                         <p>Made by <a href="https://jcc.lol">DayTrip</a>.</p>
                     </div>*/}
                 <div>
-                    <a className="invisible" href="#top" ref={topReference}>Back to top</a>
+                    {visible ? <button className="scroll-top btn btn-primary rounded-pill" onClick={() => {window.scrollTo(0, 0)}}>Back to top</button> : <></>}
                 </div>
             </div>
         </div>

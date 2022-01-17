@@ -1,4 +1,4 @@
-import Navbar from "./Navbar";
+import {Navbar} from "./Navbar";
 import {Redirect} from "react-router-dom";
 import sendToLogin from "./sendToLogin";
 
