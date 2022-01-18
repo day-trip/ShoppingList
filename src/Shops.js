@@ -1,17 +1,15 @@
-import {createRef, useState} from "react";
+import {useRef, useState} from "react";
 import Shop from "./Shop";
-import Backend from "./Backend";
+import {Backend} from "./Backend";
 import {Navbar, ToggledContent} from "./Navbar";
 import {disableIfEmpty} from "./validation";
 
 const Shops = () => {
     const [shops, setShops] = useState(null);
-    const [gotShops, setGotShops] = useState(false);
-    const addInputReference = createRef();
-    const addButtonReference = createRef();
-    if (!gotShops) {
+    const addInputReference = useRef();
+    const addButtonReference = useRef();
+    if (shops === null) {
         Backend.getLists((res) => {
-            setGotShops(true);
             setShops(res);
         })
     }
@@ -20,16 +18,14 @@ const Shops = () => {
         if (addInputReference.current && addInputReference.current.value) {
             const value = addInputReference.current.value;
             addInputReference.current.value = "";
-            Backend.createList(value, (shopID) => {
-                setShops([...shops, [shopID, value]]);
-            });
+            setShops([...shops, [Backend.createList(value), value]]);
         }
     }
 
     return (
         <>
             <Navbar>
-                <a className="navbar-brand">My shopping lists</a>
+                <a href="/shops" className="navbar-brand">My shopping lists</a>
                 <ToggledContent>
                     <ul className="navbar-nav ms-md-auto">
                         <li className="nav-item">
@@ -42,7 +38,7 @@ const Shops = () => {
             <div className="container">
                 <div className="input-group mb-2">
                     <input ref={addInputReference} onChange={disableIfEmpty(addInputReference, addButtonReference)} type="text" className="form-control add_new" placeholder="Add new store"/>
-                    <button ref={addButtonReference} className="btn btn-primary button_big_font disabled" type="button" onClick={add}>+</button>
+                    <button ref={addButtonReference} className="btn btn-primary button_big_font disabled shadow-none" type="button" onClick={add}>+</button>
                 </div>
 
                 {shops === null ? (

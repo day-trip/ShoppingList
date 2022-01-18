@@ -1,4 +1,4 @@
-import sendToLogin from "./sendToLogin";
+import {sendToLogin} from "./Backend";
 
 
 const sendRequest = (url, data, callback, next) => {
@@ -19,7 +19,6 @@ const sendRequest = (url, data, callback, next) => {
                 localStorage.removeItem("token");
                 sendToLogin(next);
             }
-            console.log(xhr.responseText);
             if (callback) {
                 callback(xhr.responseText);
             }

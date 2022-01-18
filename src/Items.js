@@ -1,23 +1,21 @@
-import {createRef, useState} from "react";
+import {useRef, useState} from "react";
 import Item from "./Item";
-import Backend from "./Backend";
+import {Backend} from "./Backend";
 import {useParams} from "react-router-dom";
 import {Navbar, ToggledContent} from "./Navbar";
 import {disableIfEmpty} from "./validation";
 
 const Items = () => {
     const [items, setItems] = useState(null);
-    const [gotItems, setGotItems] = useState(false);
-    const addInputReference = createRef();
-    const addButtonReference = createRef();
-    const sendInputReference = createRef();
-    const sendButtonReference = createRef();
+    const addInputReference = useRef();
+    const addButtonReference = useRef();
+    const sendInputReference = useRef();
+    const sendButtonReference = useRef();
     let {shopID} = useParams()
     const shopName = localStorage.getItem("shopName") || "error";
 
-    if (!gotItems) {
+    if (items === null) {
         Backend.getItems(shopID, (res) => {
-            setGotItems(true);
             setItems(res);
         })
     }
@@ -38,7 +36,7 @@ const Items = () => {
     return (
         <>
             <Navbar>
-                <a className="navbar-brand">My <span className="text-danger">{shopName}</span> shopping list</a>
+                <a href={"/shop/" + shopID} className="navbar-brand">My <span className="text-danger">{shopName}</span> list</a>
                 <ToggledContent>
                     <ul className="navbar-nav">
                         <li className="nav-item">
@@ -59,12 +57,12 @@ const Items = () => {
             <div className="container">
                 <div className="input-group mb-4">
                     <input ref={sendInputReference} onChange={disableIfEmpty(sendInputReference, sendButtonReference)} type="tel" className="form-control" placeholder="Phone number" />
-                    <button ref={sendButtonReference} className="btn btn-primary disabled" type="button" onClick={sendList}>Send List</button>
+                    <button ref={sendButtonReference} className="btn btn-primary disabled shadow-none" type="button" onClick={sendList}>Send List</button>
                 </div>
 
                 <div className="input-group mb-2">
                     <input ref={addInputReference} onChange={disableIfEmpty(addInputReference, addButtonReference)} type="text" className="form-control add_new" placeholder="Add new item" autoFocus={true} />
-                    <button ref={addButtonReference} className="btn btn-primary disabled" type="button" onClick={add}>+</button>
+                    <button ref={addButtonReference} className="btn btn-primary disabled shadow-none" type="button" onClick={add}>+</button>
                 </div>
 
                 {items === null ? (

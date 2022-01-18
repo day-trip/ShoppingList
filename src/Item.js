@@ -1,5 +1,5 @@
 import {createRef} from "react";
-import Backend from "./Backend";
+import {Backend} from "./Backend";
 
 const Item = ({listID, itemName, onDelete, onEdit}) => {
     const inputReference = createRef();
@@ -23,7 +23,7 @@ const Item = ({listID, itemName, onDelete, onEdit}) => {
     return (
         <div className="input-group mb-2">
             <input type="text" className="form-control" defaultValue={itemName} onBlur={onBlur} ref={inputReference} />
-            <button className="btn btn-secondary" type="button" onClick={deleteItem}>&times;</button>
+            <button className="btn btn-secondary shadow-none" type="button" onClick={deleteItem}>&times;</button>
         </div>
     )
 }

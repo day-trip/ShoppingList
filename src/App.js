@@ -2,7 +2,6 @@ import './bootstrap.css';
 import './App.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Footer from "./Footer";
 import LoginCallback from "./LoginCallback";
 import Signout from "./Signout";
 import Home from "./Home";
@@ -38,7 +37,6 @@ function App() {
                         <Signout/>
                     </Route>
                 </Switch>
-                <Footer/>
             </div>
         </Router>
     );

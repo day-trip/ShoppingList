@@ -22,4 +22,5 @@
     position: fixed !important;
     right: 3% !important;
     bottom: 3% !important;
+    z-index: 1000 !important;
 }

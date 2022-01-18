@@ -1,4 +1,4 @@
-import sendToLogin from "./sendToLogin";
+import {sendToLogin} from "./Backend";
 
 const Login = () => {
     return sendToLogin("/shops");

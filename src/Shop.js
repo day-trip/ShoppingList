@@ -1,6 +1,5 @@
 import {createRef} from "react";
-import Backend from "./Backend";
-import {Link} from "react-router-dom";
+import {Backend} from "./Backend";
 
 const Shop = ({shopID, shopName, onDelete, onEdit}) => {
     const inputReference = createRef();
@@ -8,7 +7,6 @@ const Shop = ({shopID, shopName, onDelete, onEdit}) => {
     const openList = () => {
         localStorage.setItem("shopName", shopName);
         window.location.href = "/shop/" + shopID;
-        <Link ></Link>
     }
 
     const saveList = (target) => {
@@ -29,11 +27,11 @@ const Shop = ({shopID, shopName, onDelete, onEdit}) => {
 
     return (
         <div className="input-group mb-2">
-            <button className="btn btn-primary" type="button" onClick={openList}>&gt;</button>
+            <button className="btn btn-primary shadow-none" type="button" onClick={openList}>&gt;</button>
 
             <input type="text" className="form-control" defaultValue={shopName} onBlur={onBlur} ref={inputReference}/>
 
-            <button className="btn btn-secondary button_big_font" type="button" onClick={deleteList}>&times;</button>
+            <button className="btn btn-secondary button_big_font shadow-none" type="button" onClick={deleteList}>&times;</button>
         </div>
     )
 }
