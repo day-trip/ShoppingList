@@ -12,6 +12,15 @@ const disableIfEmpty = (inputRef: RefObject<HTMLInputElement>, buttonRef: RefObj
     };
 }
 
+const runOnEnter = (func: CallableFunction) => {
+    return (event) => {
+        if (event.code === "Enter") {
+            func();
+        }
+    };
+}
+
 export {
-    disableIfEmpty
+    disableIfEmpty,
+    runOnEnter
 };

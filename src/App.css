@@ -24,3 +24,12 @@
     bottom: 3% !important;
     z-index: 1000 !important;
 }
+
+.dropdown-menu {
+    overflow-y: auto !important;
+    max-height: 50vh !important;
+}
+
+.debug {
+    border: 5px solid black;
+}

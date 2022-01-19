@@ -2,7 +2,7 @@ import {useRef, useState} from "react";
 import Shop from "./Shop";
 import {Backend} from "./Backend";
 import {Navbar, ToggledContent} from "./Navbar";
-import {disableIfEmpty} from "./validation";
+import {disableIfEmpty, runOnEnter} from "./validation";
 
 const Shops = () => {
     const [shops, setShops] = useState(null);
@@ -19,6 +19,9 @@ const Shops = () => {
             const value = addInputReference.current.value;
             addInputReference.current.value = "";
             setShops([...shops, [Backend.createList(value), value]]);
+            addInputReference.current.focus();
+            disableIfEmpty(addInputReference, addButtonReference)();
+            // TODO:   MAKE BUTTON DISABLE AFTER PRESS AND MAKE ENTER KEY
         }
     }
 
@@ -37,7 +40,7 @@ const Shops = () => {
 
             <div className="container">
                 <div className="input-group mb-2">
-                    <input ref={addInputReference} onChange={disableIfEmpty(addInputReference, addButtonReference)} type="text" className="form-control add_new" placeholder="Add new store"/>
+                    <input ref={addInputReference} onChange={disableIfEmpty(addInputReference, addButtonReference)} onKeyDown={runOnEnter(add)} type="text" className="form-control add_new" placeholder="Add new store"/>
                     <button ref={addButtonReference} className="btn btn-primary button_big_font disabled shadow-none" type="button" onClick={add}>+</button>
                 </div>
 

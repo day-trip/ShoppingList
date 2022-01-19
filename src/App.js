@@ -1,6 +1,7 @@
 import './bootstrap.css';
 import './App.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'react-telephone-input/css/default.css'
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import LoginCallback from "./LoginCallback";
 import Signout from "./Signout";

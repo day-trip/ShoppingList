@@ -19,8 +19,12 @@ const Home = () => {
                     </li>
                 </ul>
             </Navbar>
-            <div className="container text-center">
-                <h2 className="mb-lg-5">Keep track of everything you need to buy from any device!</h2>
+            <div className="container">
+                <h2 className="mb-lg-5 text-center">Keep track of everything you need to buy from any device!</h2>
+                <div className="position-relative">
+                    <img src="/shops.png" className="border border-1 border-danger rounded-2 w-100 h-100" alt="Shops" />
+                    <h4 className="position-absolute start-50 bottom-0 translate-middle-x">Manage all your shops easily from anywhere</h4>
+                </div>
             </div>
         </>
     )

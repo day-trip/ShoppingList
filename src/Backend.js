@@ -1,6 +1,7 @@
 import sendRequest from "./requests";
 
 class Backend {
+    // TODO: if user has more than one MAC address then load from backend, else load from cache
     static API_ENDPOINT = "https://o0rqxrd4al.execute-api.us-east-1.amazonaws.com/Prod/";
 
     static createList(listName) {
@@ -41,6 +42,12 @@ class Backend {
 
     static updateItem(listID, itemName, newItemName) {
         sendRequest(this.API_ENDPOINT + "item/edit", {shop: listID, item: itemName, newItem: newItemName}, null, window.location.href);
+    }
+
+
+
+    static sendList(listID, listName, phoneNumber) {
+        sendRequest(this.API_ENDPOINT + "shop/send", {shopId: listID, shopName: listName, phoneNumber: phoneNumber}, null, window.location.href);
     }
 }
 
