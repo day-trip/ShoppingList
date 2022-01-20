@@ -1,6 +1,17 @@
 import {Navbar, ToggledContent} from "./Navbar";
+import Link from "./Link";
+import {useState} from "react";
+import {Redirect} from "react-router-dom";
 
 const Share = () => {
+    const [redirect, setRedirect] = useState(null);
+
+    if (redirect) {
+        return (
+            <Redirect to={redirect}/>
+        )
+    }
+
     return (
         <>
             <Navbar>
@@ -8,10 +19,10 @@ const Share = () => {
                 <ToggledContent>
                     <ul className="navbar-nav ms-md-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="/shops">My lists</a>
+                            <Link className="nav-link" href="/shops" set={setRedirect}>My Lists</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/signout">Sign Out</a>
+                            <Link className="nav-link" href="/" set={setRedirect} callback={() => {localStorage.removeItem("token");}}>Signout</Link>
                         </li>
                     </ul>
                 </ToggledContent>

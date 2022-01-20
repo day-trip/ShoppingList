@@ -1,11 +1,36 @@
-import sendRequest from "./requests";
+const sendRequest = (url, data, callback, next) => {
+    const token = window.localStorage.getItem("token");
+    if (!token) {
+        sendToLogin(next);
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", token);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 403 || xhr.status === 401) {
+                localStorage.removeItem("token");
+                sendToLogin(next);
+            }
+            if (callback) {
+                callback(xhr.responseText);
+            }
+        }
+    };
+
+    xhr.send(typeof data === "string" ? data : JSON.stringify(data));
+}
 
 class Backend {
     // TODO: if user has more than one MAC address then load from backend, else load from cache
     static API_ENDPOINT = "https://o0rqxrd4al.execute-api.us-east-1.amazonaws.com/Prod/";
 
     static createList(listName) {
-        const shopID = (Date.now() * 50).toFixed();
+        const shopID = (Date.now() / 20).toFixed();
         sendRequest(this.API_ENDPOINT + "shop/add", {shopName: listName, shopId: shopID}, null, window.location.href);
         return shopID;
     }
@@ -58,5 +83,6 @@ function sendToLogin(next) {
 
 export {
     Backend,
-    sendToLogin
+    sendToLogin,
+    sendRequest
 };

@@ -1,10 +1,13 @@
 import {useRef, useState} from "react";
 import Shop from "./Shop";
-import {Backend} from "./Backend";
+import {Backend} from "./util/Backend";
 import {Navbar, ToggledContent} from "./Navbar";
-import {disableIfEmpty, runOnEnter} from "./validation";
+import {disableIfEmpty, runOnEnter} from "./util/Validation";
+import Link from "./Link";
+import {Redirect} from "react-router-dom";
 
 const Shops = () => {
+    const [redirect, setRedirect] = useState(null);
     const [shops, setShops] = useState(null);
     const addInputReference = useRef();
     const addButtonReference = useRef();
@@ -21,18 +24,23 @@ const Shops = () => {
             setShops([...shops, [Backend.createList(value), value]]);
             addInputReference.current.focus();
             disableIfEmpty(addInputReference, addButtonReference)();
-            // TODO:   MAKE BUTTON DISABLE AFTER PRESS AND MAKE ENTER KEY
         }
+    }
+
+    if (redirect) {
+        return (
+            <Redirect to={redirect}/>
+        )
     }
 
     return (
         <>
             <Navbar>
-                <a href="/shops" className="navbar-brand">My shopping lists</a>
+                <a className="navbar-brand">My shopping lists</a>
                 <ToggledContent>
                     <ul className="navbar-nav ms-md-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="/signout">Sign Out</a>
+                            <Link className="nav-link" href="/" set={setRedirect} callback={() => {localStorage.removeItem("token");}}>Signout</Link>
                         </li>
                     </ul>
                 </ToggledContent>

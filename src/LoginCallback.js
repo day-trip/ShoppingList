@@ -1,4 +1,4 @@
-import getURLParameter from "./Urls";
+import getURLParameter from "./util/Urls";
 import {Redirect} from "react-router-dom";
 
 

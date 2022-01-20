@@ -1,12 +1,14 @@
-import {createRef} from "react";
-import {Backend} from "./Backend";
+import {createRef, useState} from "react";
+import {Backend} from "./util/Backend";
+import {Redirect} from "react-router-dom";
 
 const Shop = ({shopID, shopName, onDelete, onEdit}) => {
+    const [redirect, setRedirect] = useState(null);
     const inputReference = createRef();
 
     const openList = () => {
         localStorage.setItem("shopName", shopName);
-        window.location.href = "/shop/" + shopID;
+        setRedirect("/shop/" + shopID);
     }
 
     const saveList = (target) => {
@@ -23,6 +25,12 @@ const Shop = ({shopID, shopName, onDelete, onEdit}) => {
 
     const onBlur = () => {
         saveList(inputReference.current);
+    }
+
+    if (redirect) {
+        return (
+            <Redirect to={redirect}/>
+        )
     }
 
     return (

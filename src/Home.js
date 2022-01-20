@@ -1,6 +1,6 @@
 import {Navbar} from "./Navbar";
 import {Redirect} from "react-router-dom";
-import {sendToLogin} from "./Backend";
+import {sendToLogin} from "./util/Backend";
 
 const Home = () => {
     const token = localStorage.getItem("token");

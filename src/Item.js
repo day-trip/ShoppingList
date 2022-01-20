@@ -1,5 +1,5 @@
 import {createRef} from "react";
-import {Backend} from "./Backend";
+import {Backend} from "./util/Backend";
 
 const Item = ({listID, itemName, onDelete, onEdit}) => {
     const inputReference = createRef();

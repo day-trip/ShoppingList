@@ -1,14 +1,12 @@
-import './bootstrap.css';
-import './App.css';
+import './style/bootstrap.css';
+import './style/App.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'react-telephone-input/css/default.css'
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import LoginCallback from "./LoginCallback";
-import Signout from "./Signout";
 import Home from "./Home";
 import Shops from "./Shops";
 import Items from "./Items";
-import Login from "./Login";
 import Share from "./Share";
 
 function App() {
@@ -25,17 +23,11 @@ function App() {
                     <Route path="/shop/:shopID">
                         <Items/>
                     </Route>
-                    <Route path="/login">
-                        <Login/>
-                    </Route>
                     <Route path="/share">
                         <Share/>
                     </Route>
                     <Route path="/callback">
                         <LoginCallback/>
-                    </Route>
-                    <Route path="/signout">
-                        <Signout/>
                     </Route>
                 </Switch>
             </div>

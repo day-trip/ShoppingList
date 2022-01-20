@@ -1,13 +1,13 @@
 .add_new::placeholder {
-    color: rgba(245, 122, 0, 0.6);
+    color: rgba(245, 122, 0, 0.6) !important;
 }
 
 .button_big_font {
-    font-size: large;
+    font-size: large !important;
 }
 
 .form-control:focus {
-    box-shadow: 0 0 0 0 rgba(235, 104, 100, 0.25);
+    box-shadow: 0 0 0 0 rgba(235, 104, 100, 0.25) !important;
 }
 
 .mt-footer {
@@ -32,4 +32,12 @@
 
 .debug {
     border: 5px solid black;
+}
+
+.b-none {
+    border: none !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
 }
