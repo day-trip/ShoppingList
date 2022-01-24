@@ -3,7 +3,7 @@ import {Redirect} from "react-router-dom";
 
 
 const LoginCallback = () => {
-    localStorage.setItem("beenHere", "1");
+    localStorage.setItem("beenHere", "hello world");
     const token = getURLParameter("access_token")
     if (token === null) {
         return (

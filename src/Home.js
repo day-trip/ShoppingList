@@ -22,7 +22,7 @@ const Home = () => {
         }
     }, [pagePart]);
 
-    if (localStorage.getItem("beenHere") === 1) {
+    if (localStorage.getItem("beenHere")) {
         return (
             <Redirect to="/shops"/>
         )
