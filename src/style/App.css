@@ -1,4 +1,4 @@
-.add_new::placeholder {
+.placeholder-danger::placeholder {
     color: rgba(245, 122, 0, 0.6) !important;
 }
 
@@ -40,4 +40,8 @@
 
 .navbar-toggler:focus {
     box-shadow: none !important;
+}
+
+.top-25 {
+    top: 25% !important;
 }

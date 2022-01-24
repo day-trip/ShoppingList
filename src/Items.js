@@ -5,13 +5,14 @@ import {Redirect, useParams} from "react-router-dom";
 import {Navbar, ToggledContent} from "./Navbar";
 import {disableIfEmpty, runOnEnter} from "./util/Validation";
 import Link from "./Link";
+import PhoneInput from "./PhoneInput";
 
 const Items = () => {
     const [redirect, setRedirect] = useState(null);
     const [items, setItems] = useState(null);
+    const [phoneNumber, setPhoneNumber] = useState(null);
     const addInputReference = useRef();
     const addButtonReference = useRef();
-    const sendInputReference = useRef();
     const sendButtonReference = useRef();
     let {shopID} = useParams()
     const shopName = localStorage.getItem("shopName") || "error";
@@ -38,11 +39,10 @@ const Items = () => {
     }
 
     const sendList = () => {
-        if (sendInputReference.current) {
-            const number = "+1" + sendInputReference.current.value;
-            localStorage.setItem("phoneDefault", sendInputReference.current.value);
+        if (phoneNumber) {
+            const number = "+1" + phoneNumber;
+            localStorage.setItem("phoneDefault", phoneNumber);
             Backend.sendList(shopID, shopName, number);
-            sendInputReference.current.value = "";
         }
     }
 
@@ -58,9 +58,9 @@ const Items = () => {
                 <a className="navbar-brand">My <span className="text-danger">{shopName}</span> list</a>
                 <ToggledContent>
                     <ul className="navbar-nav">
-                        <li className="nav-item">
+                        {/*<li className="nav-item">
                             <Link className="nav-link" href="/share" set={setRedirect}>Share</Link>
-                        </li>
+                        </li>*/}
                     </ul>
                     <ul className="navbar-nav ms-md-auto">
                         <li className="nav-item">
@@ -74,15 +74,8 @@ const Items = () => {
             </Navbar>
 
             <div className="container">
-                <div className="input-group">
-                    <input ref={sendInputReference} onChange={disableIfEmpty(sendInputReference, sendButtonReference)} onKeyDown={runOnEnter(sendList)} className="form-control" placeholder="Phone number" type="tel" onKeyPress={(event) => {if (isNaN(event.key)) {event.preventDefault()}}} defaultValue={localStorage.getItem("phoneDefault") || ""}/>
-                    <button ref={sendButtonReference} className="btn btn-primary disabled shadow-none" type="button" onClick={sendList}>Send List</button>
-                </div>
-
-                <hr/>
-
                 <div className="input-group mb-2">
-                    <input ref={addInputReference} onChange={disableIfEmpty(addInputReference, addButtonReference)} onKeyDown={runOnEnter(add)} type="text" className="form-control add_new" placeholder="Add new item" autoFocus={true} />
+                    <input ref={addInputReference} onChange={disableIfEmpty(addInputReference, addButtonReference)} onKeyDown={runOnEnter(add)} type="text" className="form-control placeholder-danger" placeholder="Add new item" autoFocus={true} />
                     <button ref={addButtonReference} className="btn btn-primary disabled shadow-none" type="button" onClick={add}>+</button>
                 </div>
 
@@ -91,7 +84,7 @@ const Items = () => {
                 ) : items.length === 0 ? (
                     <p>You do not have any items.</p>
                 ) : (
-                    items.map(((value, index) => {
+                    items.map((value, index) => {
                         return <Item key={value} listID={shopID} itemName={value} onDelete={() => {
                             const copy = [...items];
                             copy.splice(index, 1)
@@ -102,7 +95,13 @@ const Items = () => {
                             copy[index] = newValue;
                             setItems(copy);
                         }} />
-                    })))}
+                    })
+                    )}
+
+                <div className="input-group mt-lg-3">
+                    <PhoneInput className="form-control placeholder-danger" placeholder="Enter phone number" setPhoneNumber={setPhoneNumber} setValid={(valid) => {if (valid) {sendButtonReference.current.classList.remove("disabled")} else {sendButtonReference.current.classList.add("disabled")}}}>{localStorage.getItem("phoneDefault") || ""}</PhoneInput>
+                    <button ref={sendButtonReference} className="btn btn-primary disabled shadow-none" type="button" onClick={sendList}>Send List</button>
+                </div>
             </div>
         </>
     )

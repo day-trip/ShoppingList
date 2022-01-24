@@ -48,7 +48,7 @@ const Shops = () => {
 
             <div className="container">
                 <div className="input-group mb-2">
-                    <input ref={addInputReference} onChange={disableIfEmpty(addInputReference, addButtonReference)} onKeyDown={runOnEnter(add)} type="text" className="form-control add_new" placeholder="Add new store"/>
+                    <input ref={addInputReference} onChange={disableIfEmpty(addInputReference, addButtonReference)} onKeyDown={runOnEnter(add)} type="text" className="form-control placeholder-danger" placeholder="Add new store"/>
                     <button ref={addButtonReference} className="btn btn-primary button_big_font disabled shadow-none" type="button" onClick={add}>+</button>
                 </div>
 
