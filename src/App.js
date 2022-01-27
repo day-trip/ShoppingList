@@ -8,6 +8,7 @@ import Home from "./Home";
 import Shops from "./Shops";
 import Items from "./Items";
 import Share from "./Share";
+import './util/Extensions';
 /*import useWebSocket from "react-use-websocket";
 import {useEffect} from "react";*/
 
