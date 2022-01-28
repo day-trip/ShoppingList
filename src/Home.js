@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import {sendToLogin} from "./util/Backend";
-import {Spacer, MarginSpacer} from "./Spacer";
+import {Spacer} from "./Spacer";
 import {useFitText} from "./util/ReactUtil";
 
 const Home = () => {
@@ -39,42 +39,50 @@ const Home = () => {
 }
 
 const Home1 = () => {
+    const ref = useState(useRef());
+    const getFontSize = useFitText(ref, 25);
+
     return (
         <>
             <div style={{height: "20%", display: "flex", alignItems: "center"}}>
-                <h1 style={{margin: "auto", color: "white"}} className="animate__animated animate__fadeIn">Keep track of everything you need to buy from any device!</h1>
+                <h1 ref={ref} style={{margin: "auto", color: "white", fontSize: getFontSize()}} className="animate__animated animate__fadeIn">Keep track of everything you need to buy from any device!</h1>
             </div>
             <div style={{height: "60%", display: "flex", alignItems: "center"}}>
-                <img style={{margin: "auto", maxHeight: "100%", maxWidth: "95%"}} className="animate__animated animate__fadeIn" src="/listdemo.png" alt="Shops Demo" />
+                <img style={{margin: "auto", maxHeight: "100%", maxWidth: "100%"}} className="animate__animated animate__fadeIn" src="/listdemo.png" alt="Shops Demo" />
             </div>
-            <div style={{height: "20%", display: "flex", alignItems: "center"}}>
-
-            </div>
+            <Spacer height={20}/>
         </>
     )
 }
 
 const Home2 = () => {
+    const ref = useState(useRef());
+    const ref1 = useState(useRef());
+    const getFontSize = useFitText(ref, 25);
+    const getFontSize1 = useFitText(ref1, 35);
+
     return (
         <>
             <div style={{height: "20%", display: "flex", alignItems: "center"}}>
-                <h1 style={{margin: "auto", color: "white"}}>Keep track of everything you need to buy from any device!</h1>
+                <h1 ref={ref} style={{margin: "auto", color: "white", fontSize: getFontSize()}}>Keep track of everything you need to buy from any device!</h1>
             </div>
             <div style={{height: "60%", display: "flex", alignItems: "center"}}>
-                <img style={{margin: "auto", maxHeight: "100%", maxWidth: "95%"}} className="animate__animated animate__fadeIn" src="/senddemo.png" alt="Send Demo" />
+                <img style={{margin: "auto", maxHeight: "100%", maxWidth: "100%"}} className="animate__animated animate__fadeIn" src="/senddemo.png" alt="Send Demo" />
             </div>
             <div style={{height: "20%", display: "flex", alignItems: "center"}}>
-                <h2 style={{margin: "auto", color: "white"}} className="animate__animated animate__fadeIn">Send lists by text message to anybody quickly and easily!</h2>
+                <h2 ref={ref1} style={{margin: "auto", color: "white", fontSize: getFontSize1()}} className="animate__animated animate__fadeIn">Send lists by text message to anybody quickly and easily!</h2>
             </div>
         </>
     )
 }
 
 const Home3 = ({beenHere}) => {
-    const ref = useRef();
-    const ref1 = useRef();
+    const [ref] = useState(useRef());
+    const [ref1] = useState(useRef());
+    const [ref2] = useState(useRef());
     const getFontSize = useFitText(ref, 25);
     const getFontSize1 = useFitText(ref1, 35);
+    const getFontSize2 = useFitText(ref2, 55, false);
 
     /*return (
         <div style={{height: "100%", width: "100%", display: "table"}}>
@@ -90,17 +98,17 @@ const Home3 = ({beenHere}) => {
 
     return (
         <>
-            <Spacer height={35}/>
-            <div style={{height: "10%", display: "flex", alignItems: "center"}}>
-                <h1 ref={ref} style={{margin: "auto", color: "black", maxHeight: "100%", fontSize: getFontSize()}}>Keep track of everything you need to buy from any device!</h1>
+            <Spacer height={30}/>
+            <div style={{height: "15%", display: "flex", alignItems: "center"}}>
+                <h1 ref={ref} style={{margin: "auto", color: "black", fontSize: getFontSize()}}>Keep track of everything you need to buy from any device!</h1>
             </div>
-            <div style={{height: "10%", display: "flex", alignItems: "center"}}>
-                <h2 ref={ref1} style={{margin: "auto", color: "black", maxHeight: "100%", fontSize: getFontSize1()}}>Send lists by text message to anybody quickly and easily!</h2>
+            <div style={{height: "15%", display: "flex", alignItems: "center"}}>
+                <h2 ref={ref1} style={{margin: "auto", color: "black", fontSize: getFontSize1()}}>Send lists by text message to anybody quickly and easily!</h2>
             </div>
-            <div style={{height: "10%", display: "flex", alignItems: "center"}}>
-                <button style={{margin: "auto"}} className={"btn btn-primary btn-lg animate__animated animate__fadeIn"} onClick={() => {sendToLogin("/shops")}}>{beenHere ? "Login" : "Get started now"}</button>
+            <div style={{height: "20%", display: "flex", alignItems: "center"}}>
+                <button ref={ref2} style={{margin: "auto", padding: (getFontSize2() / 2) + "px", fontSize: getFontSize2() + "px", borderRadius: (getFontSize2() / 75) + "rem"}} className={"btn btn-primary animate__animated animate__fadeIn"} onClick={() => {sendToLogin("/shops")}}>{beenHere ? "Login" : "Get started now"}</button>
             </div>
-            <Spacer height={35}/>
+            <Spacer height={20}/>
         </>
     )
 }

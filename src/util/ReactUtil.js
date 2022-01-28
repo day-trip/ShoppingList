@@ -8,21 +8,22 @@ const usePersistentState = (key: string, initialValue: any) => {
     return [state, setState]
 }
 
-const useFitText = (text: RefObject<HTMLHeadingElement>, compressor: number) => {
-    const [size, setSize] = useState(0)
+const useFitText = (text: RefObject<HTMLHeadingElement>, compressor: number, addPX: boolean = true) => {
+    const [size, setSize] = useState(null)
+
+    const listener = () => {
+        setSize(Math.min(Math.max(text.current.parentElement.clientWidth / compressor, 0), text.current.parentElement.clientHeight));
+    }
 
     useEffect(() => {
-        const listener = () => {
-            setSize(Math.min(Math.max(text.current.parentElement.clientWidth / compressor, 0), text.current.parentElement.clientHeight));
-        }
-        window.addEventListener('resize', listener);
         listener();
+        window.addEventListener('resize', listener);
         return () => {
             window.removeEventListener('resize', listener);
         }
     });
 
-    return () => (size + "px");
+    return () => (size + (addPX ? "px" : 0));
 }
 
 export {

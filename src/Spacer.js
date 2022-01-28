@@ -6,13 +6,6 @@ const Spacer = ({height}) => {
     )
 }
 
-const MarginSpacer = ({height}) => {
-    return (
-        <div style={{height: "0", marginBottom: height.toString() + "%"}}/>
-    )
-}
-
 export {
-    Spacer,
-    MarginSpacer
+    Spacer
 };
