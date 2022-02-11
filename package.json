@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/auth": "^4.4.1",
     "@capacitor/core": "^3.4.0",
     "@capacitor/ios": "3.4.0",
     "@testing-library/jest-dom": "^5.16.1",

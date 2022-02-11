@@ -9,20 +9,8 @@ import Shops from "./Shops";
 import Items from "./Items";
 import './util/Extensions';
 import {Amplify} from "aws-amplify";
-/*import useWebSocket from "react-use-websocket";
-import {useEffect} from "react";*/
 
 function App() {
-    /*const {sendMessage, lastMessage, readyState} = useWebSocket("wss://g71egynla2.execute-api.us-east-1.amazonaws.com/production");
-
-    useEffect(() => {
-        console.log(readyState);
-    }, [readyState, sendMessage]);
-
-    useEffect(() => {
-        console.log(lastMessage);
-    }, [lastMessage])*/
-
     Amplify.configure({
         Auth: {
             region: 'us-east-1',
@@ -41,7 +29,6 @@ function App() {
 
     return (
         <Router>
-            {/*<button onClick={() => {sendMessage(JSON.stringify({token: localStorage.getItem("token"), action: "echo", message: Date.now().toString()}))}}>Test Me</button>*/}
             <Switch>
                 <Route exact path="/">
                     <Home/>
