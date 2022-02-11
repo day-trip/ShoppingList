@@ -5,12 +5,16 @@ import {Navbar, ToggledContent} from "./Navbar";
 import {disableIfEmpty, runOnEnter} from "./util/Validation";
 import Link from "./Link";
 import {Redirect} from "react-router-dom";
+import setDocumentTitle from "./util/DocumentTitle";
 
 const Shops = () => {
     const [redirect, setRedirect] = useState(null);
     const [shops, setShops] = useState(null);
     const addInputReference = useRef();
     const addButtonReference = useRef();
+
+    setDocumentTitle("My Shopping Lists");
+
     if (shops === null) {
         Backend.getLists((res) => {
             setShops(res);

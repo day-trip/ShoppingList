@@ -7,8 +7,8 @@ import LoginCallback from "./LoginCallback";
 import Home from "./Home";
 import Shops from "./Shops";
 import Items from "./Items";
-import Share from "./Share";
 import './util/Extensions';
+import {Amplify} from "aws-amplify";
 /*import useWebSocket from "react-use-websocket";
 import {useEffect} from "react";*/
 
@@ -23,6 +23,22 @@ function App() {
         console.log(lastMessage);
     }, [lastMessage])*/
 
+    Amplify.configure({
+        Auth: {
+            region: 'us-east-1',
+
+            userPoolId: 'us-east-1_XMBuQDKSm',
+            userPoolWebClientId: 'mjm9mlsti9nge4jpg0ao1m80j',
+
+            oauth: {
+                domain: 'jcclol.auth.us-east-1.amazoncognito.com',
+                scope: ['phone', 'email', 'openid', 'aws.cognito.signin.user.admin'],
+                redirectSignIn: "https://jcc.lol/callback",
+                responseType: 'token'
+            }
+        }
+    });
+
     return (
         <Router>
             {/*<button onClick={() => {sendMessage(JSON.stringify({token: localStorage.getItem("token"), action: "echo", message: Date.now().toString()}))}}>Test Me</button>*/}
@@ -35,9 +51,6 @@ function App() {
                 </Route>
                 <Route path="/shop/:shopID">
                     <Items/>
-                </Route>
-                <Route path="/share">
-                    <Share/>
                 </Route>
                 <Route path="/callback">
                     <LoginCallback/>

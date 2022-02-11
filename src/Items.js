@@ -6,6 +6,7 @@ import {Navbar, ToggledContent} from "./Navbar";
 import {disableIfEmpty, runOnEnter} from "./util/Validation";
 import Link from "./Link";
 import PhoneInput from "./PhoneInput";
+import setDocumentTitle from "./util/DocumentTitle";
 
 const Items = () => {
     const [redirect, setRedirect] = useState(null);
@@ -17,9 +18,7 @@ const Items = () => {
     let {shopID} = useParams()
     const shopName = localStorage.getItem("shopName") || "error";
 
-    if (document.title) {
-        document.title = shopName + " shopping list";
-    }
+    setDocumentTitle(shopName + " Shopping List");
 
     if (items === null) {
         Backend.getItems(shopID, (res) => {
@@ -57,11 +56,6 @@ const Items = () => {
             <Navbar>
                 <a className="navbar-brand">My <span className="text-danger">{shopName}</span> list</a>
                 <ToggledContent>
-                    <ul className="navbar-nav">
-                        {/*<li className="nav-item">
-                            <Link className="nav-link" href="/share" set={setRedirect}>Share</Link>
-                        </li>*/}
-                    </ul>
                     <ul className="navbar-nav ms-md-auto">
                         <li className="nav-item">
                             <Link className="nav-link" href="/shops" set={setRedirect}>My Lists</Link>
@@ -98,7 +92,7 @@ const Items = () => {
                     })
                     )}
 
-                <div className="input-group mt-lg-3">
+                <div className="input-group mt-lg-4">
                     <PhoneInput className="form-control placeholder-danger" placeholder="Enter phone number" setPhoneNumber={setPhoneNumber} setValid={(valid) => {if (valid) {sendButtonReference.current.classList.remove("disabled")} else {sendButtonReference.current.classList.add("disabled")}}}>{localStorage.getItem("phoneDefault") || ""}</PhoneInput>
                     <button ref={sendButtonReference} className="btn btn-primary disabled shadow-none" type="button" onClick={sendList}>Send List</button>
                 </div>

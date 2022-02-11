@@ -1,0 +1,8 @@
+{
+	"appId": "io.ionic.shoppinglists",
+	"appName": "shoppinglists",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "build",
+	"cordova": {}
+}

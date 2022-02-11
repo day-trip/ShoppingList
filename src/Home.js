@@ -2,19 +2,27 @@ import {useEffect, useRef, useState} from "react";
 import {sendToLogin} from "./util/Backend";
 import {Spacer} from "./Spacer";
 import {useFitText} from "./util/ReactUtil";
+import setDocumentTitle from "./util/DocumentTitle";
+import {Amplify, API, Auth} from 'aws-amplify';
+import {CognitoHostedUIIdentityProvider} from "@aws-amplify/auth/lib-esm/types/Auth";
+import awsmobile from "./aws-exports";
 
 const Home = () => {
-    const [pagePart, setPagePart] = useState(localStorage.getItem("beenHere") ? 2 : 0);
+    //const [pagePart, setPagePart] = useState(localStorage.getItem("beenHere") ? 2 : 0);
+    const pagePart = 2;
+
+    setDocumentTitle("Shopping Lists");
 
     useEffect(() => {
         window.requestAnimationFrame(() => {document.body.style.height = "100vh";});
+        document.body.classList.add("bg-primary");
         return () => {
             document.body.classList.remove("bg-primary");
             window.requestAnimationFrame(() => {document.body.style.removeProperty("height");});
         }
     }, []);
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (pagePart === 0) {
             document.body.classList.add("bg-primary");
             setTimeout(() => {setPagePart(1)}, 2700);
@@ -23,7 +31,7 @@ const Home = () => {
         if (pagePart === 2) {
             document.body.classList.remove("bg-primary");
         }
-    }, [pagePart]);
+    }, [pagePart]);*/
 
     return (
         <>
@@ -96,6 +104,11 @@ const Home3 = ({beenHere}) => {
         </div>
     )*/
 
+    const login = () => {
+        //() => {sendToLogin("/shops")}
+        Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google});
+    }
+
     return (
         <>
             <Spacer height={30}/>
@@ -106,7 +119,7 @@ const Home3 = ({beenHere}) => {
                 <h2 ref={ref1} style={{margin: "auto", color: "black", fontSize: getFontSize1()}}>Send lists by text message to anybody quickly and easily!</h2>
             </div>
             <div style={{height: "20%", display: "flex", alignItems: "center"}}>
-                <button ref={ref2} style={{margin: "auto", padding: (getFontSize2() / 2) + "px", fontSize: getFontSize2() + "px", borderRadius: (getFontSize2() / 75) + "rem"}} className={"btn btn-primary animate__animated animate__fadeIn"} onClick={() => {sendToLogin("/shops")}}>{beenHere ? "Login" : "Get started now"}</button>
+                <button ref={ref2} style={{margin: "auto", padding: (getFontSize2() / 2) + "px", fontSize: getFontSize2() + "px", borderRadius: (getFontSize2() / 75) + "rem"}} className={"btn btn-primary animate__animated animate__fadeIn"} onClick={login}>{beenHere ? "Login" : "Get started now"}</button>
             </div>
             <Spacer height={20}/>
         </>

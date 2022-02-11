@@ -34,12 +34,9 @@
     border: 5px solid black;
 }
 
-.b-none {
-    border: none !important;
-}
-
 .navbar-toggler:focus {
     box-shadow: none !important;
+    border: none !important;
 }
 
 .top-25 {

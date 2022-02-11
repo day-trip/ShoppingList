@@ -44,16 +44,29 @@ class Backend {
     }
 
     static getLists(callback) {
+        const cacheLists = localStorage.getItem("lists");
+        if (cacheLists) {
+            callback(JSON.parse(cacheLists));
+        }
         sendRequest(this.API_ENDPOINT + "shop/get", {}, (res) => {
-            callback(JSON.parse(JSON.parse(res).body))
+            const lists = JSON.parse(res).body;
+            localStorage.setItem("lists", lists);
+            callback(JSON.parse(lists));
         }, window.location.pathname);
     }
 
 
 
     static getItems(listID, callback) {
+        const cacheItems = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : {};
+        if (cacheItems[listID.toString()]) {
+            callback(cacheItems[listID.toString()]);
+        }
         sendRequest(this.API_ENDPOINT + "item/get", {shop: listID}, (res) => {
-            callback(JSON.parse(JSON.parse(res).body))
+            const items = JSON.parse(JSON.parse(res).body);
+            cacheItems[listID.toString()] = items;
+            localStorage.setItem("items", JSON.stringify(cacheItems));
+            callback(items);
         }, window.location.pathname);
     }
 
