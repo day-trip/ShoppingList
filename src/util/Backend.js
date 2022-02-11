@@ -1,3 +1,6 @@
+import {Auth} from "aws-amplify";
+import {CognitoHostedUIIdentityProvider} from "@aws-amplify/auth/lib-esm/types/Auth";
+
 const sendRequest = (url, data, callback, next) => {
     const token = window.localStorage.getItem("token");
     if (!token) {
@@ -91,7 +94,8 @@ class Backend {
 
 function sendToLogin(next) {
     window.localStorage.setItem("next", next || window.location.pathname);
-    window.location.href = "https://jcclol.auth.us-east-1.amazoncognito.com/login?client_id=33vptobuge4u71evls6c12ru5b&response_type=token&scope=email+openid+phone+aws.cognito.signin.user.admin&redirect_uri=https://jcc.lol/callback";
+    Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google});
+    //window.location.href = "https://jcclol.auth.us-east-1.amazoncognito.com/login?client_id=33vptobuge4u71evls6c12ru5b&response_type=token&scope=email+openid+phone+aws.cognito.signin.user.admin&redirect_uri=https://jcc.lol/callback";
 }
 
 export {

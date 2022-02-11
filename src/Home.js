@@ -2,8 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {Spacer} from "./Spacer";
 import {useFitText} from "./util/ReactUtil";
 import setDocumentTitle from "./util/DocumentTitle";
-import {Auth} from 'aws-amplify';
-import {CognitoHostedUIIdentityProvider} from "@aws-amplify/auth/lib-esm/types/Auth";
+import {sendToLogin} from "./util/Backend";
 
 const Home = () => {
     setDocumentTitle("Shopping Lists");
@@ -32,21 +31,8 @@ const Home3 = ({beenHere}) => {
     const getFontSize1 = useFitText(ref1, 35);
     const getFontSize2 = useFitText(ref2, 55, false);
 
-    /*return (
-        <div style={{height: "100%", width: "100%", display: "table"}}>
-            <div style={{display: "table-cell", height: "100%", verticalAlign: "middle", textAlign: "center"}} className="debug">
-                <h1>Keep track of everything you need to buy from any device!</h1>
-                <MarginSpacer height={7}/>
-                <h2>Send lists by text message to anybody quickly and easily!</h2>
-                <MarginSpacer height={11}/>
-                <button className="btn btn-primary btn-lg animate__animated animate__fadeIn" onClick={() => {sendToLogin("/shops")}}>{beenHere ? "Login" : "Get started now"}</button>
-            </div>
-        </div>
-    )*/
-
     const login = () => {
-        //() => {sendToLogin("/shops")}
-        Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google});
+        sendToLogin("/shops");
     }
 
     return (
